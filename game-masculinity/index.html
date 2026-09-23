@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wie weit gehst du? — Parti-Scouts</title>
+<meta name="description" content="Ein interaktives Spiel zur Reflexion über Konflikt, Gewalt, Gruppendruck und Entscheidungen.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/assets/icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css?v=20260826c">
+<link rel="stylesheet" href="/css/game.css?v=20260826c">
+</head>
+<body class="game-body">
+
+<div class="game-shell">
+  <div class="game-topbar">
+    <a href="/"><img src="/assets/logo.svg" alt="Parti-Scouts"> Parti-Scouts</a>
+    <span class="game-title">Wie weit gehst du?</span>
+  </div>
+
+  <div class="game-hero">
+    <h1>WIE WEIT<br><span class="accent">GEHST DU?</span></h1>
+    <p>8 Situationen, eine nach der anderen. Keine Vorlesung, keine vorgegebene richtige Antwort — nur deine Wahl. Am Ende siehst du, wie deine Entscheidungen im Vergleich zur Gruppe aussehen.</p>
+  </div>
+
+  <div class="game-mode-grid">
+    <div class="game-mode-card">
+      <h3>Allein spielen</h3>
+      <p>Spiel die ganze Geschichte für dich allein durch, in deinem eigenen Tempo.</p>
+      <button class="game-cta" id="soloBtn" type="button">Jetzt spielen</button>
+    </div>
+
+    <div class="game-mode-card">
+      <h3>Mit einer Gruppe spielen</h3>
+      <p>Ein Teamer leitet eine gemeinsame Runde. Alle beantworten dieselben 8 Situationen — am Ende seht ihr, wer wie entschieden hat. Gib den Code ein, den ihr im Raum bekommen habt.</p>
+      <input type="text" id="joinCode" placeholder="CODE, z. B. K3F9M" maxlength="8" autocomplete="off" autocapitalize="characters">
+      <button class="game-cta" id="joinBtn" type="button">Beitreten</button>
+      <p class="game-note" id="joinError" style="display:none; color:#F87171;"></p>
+    </div>
+
+    <div class="game-mode-card">
+      <h3>Als Teamer eine Runde starten</h3>
+      <p>Erstellt eine Session für eure Gruppe. Ihr bekommt einen Code für die Teilnehmenden und einen gemeinsamen Bildschirm für den Raum.</p>
+      <button class="game-cta game-cta-outline" id="hostBtn" type="button">Session erstellen</button>
+    </div>
+  </div>
+
+  <p class="game-note">Das Spiel enthält Themen wie Konflikt, Gruppendruck und Gewalt. Es ist Teil der Parti-Scouts-Präventionsarbeit und für die Nutzung mit Begleitung durch einen Teamer gedacht.</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="/js/game-group.js?v=20260826c"></script>
+<script>
+(function () {
+  "use strict";
+  document.getElementById("soloBtn").addEventListener("click", function () {
+    window.location.href = "play/";
+  });
+
+  document.getElementById("joinBtn").addEventListener("click", function () {
+    var input = document.getElementById("joinCode");
+    var code = input.value.trim().toUpperCase();
+    var errorEl = document.getElementById("joinError");
+    errorEl.style.display = "none";
+    if (!code) return;
+    window.location.href = "play/?code=" + encodeURIComponent(code);
+  });
+
+  document.getElementById("hostBtn").addEventListener("click", function () {
+    var btn = document.getElementById("hostBtn");
+    btn.disabled = true;
+    btn.textContent = "Wird erstellt …";
+    GameGroup.createSession().then(function (result) {
+      if (result.error) {
+        btn.disabled = false;
+        btn.textContent = "Session erstellen";
+        alert("Session konnte nicht erstellt werden. Bitte erneut versuchen.");
+        return;
+      }
+      window.location.href = "host/?code=" + encodeURIComponent(result.code);
+    });
+  });
+})();
+</script>
+</body>
+</html>
