@@ -6,18 +6,18 @@
 <title>Wie weit gehst du? — Parti-Scouts</title>
 <meta name="description" content="Ein interaktives Spiel zur Reflexion über Konflikt, Gewalt, Gruppendruck und Entscheidungen.">
 <meta name="robots" content="noindex">
-<link rel="icon" href="/assets/icon.svg" type="image/svg+xml">
+<link rel="icon" href="../assets/icon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/style.css?v=20260826c">
-<link rel="stylesheet" href="/css/game.css?v=20260826c">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/game.css">
 </head>
 <body class="game-body">
 
 <div class="game-shell">
   <div class="game-topbar">
-    <a href="/"><img src="/assets/logo.svg" alt="Parti-Scouts"> Parti-Scouts</a>
+    <a href="../index.html"><img src="../assets/logo.svg" alt="Parti-Scouts"> Parti-Scouts</a>
     <span class="game-title">Wie weit gehst du?</span>
   </div>
 
@@ -52,12 +52,12 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-<script src="/js/game-group.js?v=20260826c"></script>
+<script src="../js/game-group.js"></script>
 <script>
 (function () {
   "use strict";
   document.getElementById("soloBtn").addEventListener("click", function () {
-    window.location.href = "play/";
+    window.location.href = "play/index.html";
   });
 
   document.getElementById("joinBtn").addEventListener("click", function () {
@@ -66,7 +66,7 @@
     var errorEl = document.getElementById("joinError");
     errorEl.style.display = "none";
     if (!code) return;
-    window.location.href = "play/?code=" + encodeURIComponent(code);
+    window.location.href = "play/index.html?code=" + encodeURIComponent(code);
   });
 
   document.getElementById("hostBtn").addEventListener("click", function () {
@@ -80,7 +80,7 @@
         alert("Session konnte nicht erstellt werden. Bitte erneut versuchen.");
         return;
       }
-      window.location.href = "host/?code=" + encodeURIComponent(result.code);
+      window.location.href = "host/index.html?code=" + encodeURIComponent(result.code);
     });
   });
 })();

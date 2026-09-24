@@ -448,8 +448,8 @@
     try { var a = new Audio(src); a.preload = "auto"; a.volume = vol; return a; }
     catch (e) { return null; }
   }
-  var sndSwallow = loadSound("/assets/snak-swallow.mp3", 0.5);
-  var sndAttack  = loadSound("/assets/body-attack.mp3", 0.65);
+  var sndSwallow = loadSound("../assets/snak-swallow.mp3", 0.5);
+  var sndAttack  = loadSound("../assets/body-attack.mp3", 0.65);
   function playSound(a){
     if (!a) return;
     try { a.currentTime = 0; var p = a.play(); if (p && p.catch) p.catch(function(){}); }

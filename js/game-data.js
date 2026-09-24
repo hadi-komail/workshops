@@ -18,11 +18,15 @@
      peerPressure (a friend is actively pushing in this moment).
    ========================================================================== */
 
+// Resolve images relative to this script, so the game works from any folder
+// (and from file://) instead of assuming it sits at the site root.
+var GAME_ASSET_BASE = new URL("../assets/", document.currentScript.src).href;
+
 var GAME_QUESTIONS = [
 
   {
     id: "q1", theme: "Provokation", location: "Basketballplatz",
-    image: "/assets/game-q1-provokation.jpg",
+    image: GAME_ASSET_BASE + "game-q1-provokation.jpg",
     imageAlt: "Zwei Jugendliche stehen sich auf einem Basketballplatz in der Abenddämmerung gegenüber, einer mit herausforderndem Blick.",
     text: [
       "Du bist mit deinen Freunden auf dem Basketballplatz.",
@@ -42,7 +46,7 @@ var GAME_QUESTIONS = [
 
   {
     id: "q2", theme: "Beleidigung", location: "Basketballplatz",
-    image: "/assets/game-q2-beleidigung.jpg",
+    image: GAME_ASSET_BASE + "game-q2-beleidigung.jpg",
     imageAlt: "Nahaufnahme zweier Jugendlicher im Streitgespräch auf dem Basketballplatz.",
     text: ["Ein anderer Junge kommt näher."],
     line: { who: "Unbekannter", text: "„Du bist ein Idiot.“" },
@@ -58,7 +62,7 @@ var GAME_QUESTIONS = [
 
   {
     id: "q3", theme: "Gruppendruck", location: "Basketballplatz",
-    image: "/assets/game-q3-gruppendruck.jpg",
+    image: GAME_ASSET_BASE + "game-q3-gruppendruck.jpg",
     imageAlt: "Ein Freund redet drängend auf den Protagonisten ein, während der Konflikt im Hintergrund weitergeht.",
     text: ["Deine Freunde stehen dabei und schauen zu."],
     line: { who: "Dein Freund", text: "„Bruder, willst du dir das wirklich gefallen lassen?“" },
@@ -74,7 +78,7 @@ var GAME_QUESTIONS = [
 
   {
     id: "q4", theme: "Ehre", location: "Basketballplatz",
-    image: "/assets/game-q4-ehre.jpg",
+    image: GAME_ASSET_BASE + "game-q4-ehre.jpg",
     imageAlt: "Naher Blick auf das angespannte Gesicht eines Jugendlichen im Gegenlicht der Flutlichter.",
     text: ["Immer mehr Leute schauen jetzt hin."],
     line: { who: "Unbekannter", text: "„Du bist doch kein richtiger Mann.“" },
@@ -89,7 +93,7 @@ var GAME_QUESTIONS = [
 
   {
     id: "q5", theme: "Familie", location: "Basketballplatz",
-    image: "/assets/game-q5-familie.jpg",
+    image: GAME_ASSET_BASE + "game-q5-familie.jpg",
     imageAlt: "Ein Jugendlicher mit angespanntem Gesichtsausdruck und zitternden Händen.",
     text: ["Der andere kommt noch näher."],
     line: { who: "Unbekannter", text: "„Deine Mutter würde sich für dich schämen.“" },
@@ -104,7 +108,7 @@ var GAME_QUESTIONS = [
 
   {
     id: "q6", theme: "Körperkontakt", location: "Basketballplatz",
-    image: "/assets/game-q6-koerperkontakt.jpg",
+    image: GAME_ASSET_BASE + "game-q6-koerperkontakt.jpg",
     imageAlt: "Ein Jugendlicher taumelt einen Schritt zurück, unmittelbar nachdem er geschubst wurde.",
     text: ["Die andere Person schubst dich. Du taumelst einen Schritt zurück."],
     prompt: "WAS MACHST DU?",
@@ -118,7 +122,7 @@ var GAME_QUESTIONS = [
 
   {
     id: "q7", theme: "Freund in Gefahr", location: "Basketballplatz",
-    image: "/assets/game-q7-freund-in-gefahr.jpg",
+    image: GAME_ASSET_BASE + "game-q7-freund-in-gefahr.jpg",
     imageAlt: "Aus der Perspektive des Protagonisten: eine unscharfe Auseinandersetzung im Hintergrund, sein Gesicht alarmiert im Vordergrund.",
     text: ["Es geht plötzlich nicht mehr nur um dich.", "Dein Freund wird angegriffen."],
     prompt: "WAS MACHST DU?",
@@ -133,7 +137,7 @@ var GAME_QUESTIONS = [
 
   {
     id: "q8", theme: "Die letzte Entscheidung", location: "Straße, auf dem Nachhauseweg",
-    image: "/assets/game-q8-letzte-entscheidung.jpg",
+    image: GAME_ASSET_BASE + "game-q8-letzte-entscheidung.jpg",
     imageAlt: "Eine Gruppe Jugendlicher auf einer abendlichen Straße in einem angespannten Moment.",
     text: [
       "Du bist mit deinen Freunden unterwegs.",

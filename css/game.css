@@ -1,0 +1,163 @@
+/* ==========================================================================
+   "Wie weit gehst du?" — game UI.
+   Deliberately distinct from the marketing site: dark, cinematic, tense.
+   Loaded only on /game/* pages, after style.css (reuses --orange etc.).
+   ========================================================================== */
+
+.game-body{
+  background:var(--game-bg, #0D1117);
+  color:#EDEDED;
+  min-height:100vh;
+}
+.game-body .site-header, .game-body .site-footer{display:none;}
+
+.game-shell{
+  max-width:720px; margin:0 auto;
+  min-height:100vh;
+  display:flex; flex-direction:column;
+  padding:0 20px 60px;
+}
+
+.game-topbar{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:18px 0; border-bottom:1px solid rgba(255,255,255,0.08);
+}
+.game-topbar a{
+  font-family:var(--display); font-weight:700; font-size:14px;
+  color:#EDEDED; opacity:0.75; display:flex; align-items:center; gap:8px;
+}
+.game-topbar a:hover{opacity:1;}
+.game-topbar a img{height:28px; width:auto;}
+.game-topbar .game-title{font-family:var(--display); font-weight:700; font-size:13px; letter-spacing:0.06em; text-transform:uppercase; color:var(--orange);}
+
+/* ---------- landing ---------- */
+.game-hero{padding:56px 0 32px; text-align:center;}
+.game-hero h1{font-family:var(--display); font-weight:700; font-size:clamp(32px,6vw,48px); line-height:1.1;}
+.game-hero .accent{color:var(--orange);}
+.game-hero p{margin-top:16px; color:#B9BDC4; font-size:16px; line-height:1.6; max-width:52ch; margin-left:auto; margin-right:auto;}
+
+.game-mode-grid{display:grid; gap:16px; margin-top:36px;}
+.game-mode-card{
+  background:#161B22; border:1px solid rgba(255,255,255,0.08); border-radius:16px;
+  padding:24px; text-align:left;
+}
+.game-mode-card h3{font-family:var(--display); font-size:18px; margin-bottom:8px;}
+.game-mode-card p{color:#9AA0A8; font-size:14px; line-height:1.55; margin-bottom:16px;}
+.game-mode-card input{
+  width:100%; background:#0D1117; border:1px solid rgba(255,255,255,0.15); border-radius:10px;
+  color:#EDEDED; padding:12px 14px; font-size:15px; margin-bottom:12px;
+}
+.game-mode-card input::placeholder{color:#5B6270;}
+
+.game-cta{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  font-family:var(--display); font-weight:600; font-size:14.5px;
+  padding:13px 22px; border-radius:100px; width:100%;
+  background:var(--orange); color:#fff; border:none; cursor:pointer;
+  transition:background 0.15s ease, opacity 0.15s ease;
+}
+.game-cta:hover{background:var(--orange-dark);}
+.game-cta:disabled{opacity:0.5; cursor:default;}
+.game-cta-outline{background:transparent; border:1.5px solid rgba(255,255,255,0.25); color:#EDEDED;}
+.game-cta-outline:hover{background:rgba(255,255,255,0.06);}
+
+.game-note{margin-top:28px; font-size:12.5px; color:#5B6270; line-height:1.6;}
+
+/* ---------- scene stage ---------- */
+.game-stage{flex:1; padding-top:36px;}
+
+/* ---------- progress (form-style question flow) ---------- */
+.progress-wrap{display:flex; align-items:center; gap:12px; margin-bottom:24px;}
+.progress-track{flex:1; height:6px; border-radius:100px; background:rgba(255,255,255,0.08); overflow:hidden;}
+.progress-fill{height:100%; background:linear-gradient(90deg, var(--orange), #F6B26B); border-radius:100px; transition:width 0.3s ease;}
+.progress-label{font-family:var(--mono, var(--display)); font-size:12px; color:#5B6270; white-space:nowrap;}
+
+.scene-image{
+  display:block; width:100%; aspect-ratio:16/9; object-fit:cover;
+  border-radius:14px; margin-bottom:20px; background:#161B22;
+}
+
+.scene-meta{display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:20px;}
+.level-badge{
+  font-family:var(--display); font-weight:700; font-size:11.5px; letter-spacing:0.08em;
+  padding:6px 12px; border-radius:100px; background:rgba(241,140,36,0.15); color:var(--orange);
+}
+.scene-location{font-size:12.5px; color:#5B6270; font-style:italic;}
+
+.scene-narration{margin-bottom:8px;}
+.narration-line{color:#C7CBD1; font-size:16px; line-height:1.7; margin-bottom:8px;}
+
+.scene-quote{
+  margin:20px 0; padding:18px 20px; border-inline-start:3px solid var(--orange);
+  background:rgba(255,255,255,0.03); border-radius:0 12px 12px 0;
+}
+.quote-who{display:block; font-family:var(--display); font-weight:700; font-size:12px; letter-spacing:0.05em; text-transform:uppercase; color:var(--orange); margin-bottom:6px;}
+.quote-text{font-size:19px; line-height:1.5; color:#fff; font-weight:500;}
+
+.scene-prompt{
+  font-family:var(--display); font-weight:700; font-size:15px; letter-spacing:0.04em;
+  color:#EDEDED; margin:28px 0 16px; text-transform:uppercase;
+}
+.scene-prompt-lg{font-size:20px; text-align:center; margin:40px 0 24px; text-transform:none;}
+
+.scene-choices{display:flex; flex-direction:column; gap:10px; padding-bottom:20px;}
+.scene-choices-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:10px;}
+
+.choice-btn{
+  text-align:start; background:#161B22; border:1px solid rgba(255,255,255,0.1); border-radius:12px;
+  color:#EDEDED; padding:15px 18px; font-size:15px; line-height:1.4; cursor:pointer;
+  transition:border-color 0.15s ease, background 0.15s ease, transform 0.1s ease;
+}
+.choice-btn:hover{border-color:var(--orange); background:#1C232C; transform:translateY(-1px);}
+.choice-btn:active{transform:translateY(0);}
+
+/* ---------- profile ---------- */
+.profile-panel{padding-top:12px;}
+.profile-title{font-family:var(--display); font-weight:700; font-size:22px; letter-spacing:0.03em; margin-bottom:20px;}
+.profile-influence{color:#C7CBD1; margin-bottom:24px; font-size:15px;}
+.profile-influence strong{color:var(--orange);}
+.profile-bar-row{margin-bottom:18px;}
+.profile-bar-label{font-size:13.5px; color:#9AA0A8; margin-bottom:6px;}
+.profile-bar-track{height:10px; border-radius:100px; background:rgba(255,255,255,0.08); overflow:hidden;}
+.profile-bar-fill{height:100%; background:linear-gradient(90deg, var(--orange), #F6B26B); border-radius:100px; transition:width 0.6s ease;}
+.profile-bar-pct{font-size:12px; color:#5B6270; margin-top:4px;}
+.profile-disclaimer{margin:28px 0; font-size:13px; color:#5B6270; line-height:1.6; padding:16px; background:rgba(255,255,255,0.03); border-radius:12px;}
+.profile-note{margin:0 0 20px; font-size:13px; color:#9AA0A8; line-height:1.6; padding:14px 16px; border:1px dashed rgba(255,255,255,0.15); border-radius:12px;}
+
+/* ---------- personal-vs-group comparison bars ---------- */
+.profile-bar-label-row{display:flex; justify-content:space-between; align-items:baseline; gap:8px; margin-bottom:6px;}
+.profile-bar-compare{font-size:12px; color:#5B6270; white-space:nowrap;}
+.profile-bar-track-compare{position:relative; height:14px;}
+.profile-bar-fill-group{position:absolute; inset:0; height:100%; background:rgba(255,255,255,0.14); border-radius:100px;}
+.profile-bar-fill-mine{position:absolute; inset:0; height:100%; background:linear-gradient(90deg, var(--orange), #F6B26B); border-radius:100px; opacity:0.92;}
+
+/* ---------- per-question group results ---------- */
+.result-question{margin:28px 0 8px;}
+.result-question-title{font-family:var(--display); font-weight:600; font-size:14px; color:#EDEDED; margin-bottom:10px;}
+.tally-row-mine .tally-label span:first-child{color:var(--orange); font-weight:600;}
+
+/* ---------- group mode ---------- */
+.session-code{
+  font-family:var(--display); font-weight:700; font-size:40px; letter-spacing:0.1em;
+  color:var(--orange); text-align:center; margin:20px 0;
+}
+.player-list{display:flex; flex-wrap:wrap; gap:8px; margin:20px 0; justify-content:center;}
+.player-chip{background:#161B22; border:1px solid rgba(255,255,255,0.1); border-radius:100px; padding:8px 16px; font-size:13.5px;}
+
+.tally-row{margin-bottom:14px;}
+.tally-label{font-size:14.5px; color:#EDEDED; margin-bottom:6px; display:flex; justify-content:space-between;}
+.tally-track{height:14px; border-radius:100px; background:rgba(255,255,255,0.08); overflow:hidden;}
+.tally-fill{height:100%; background:linear-gradient(90deg, var(--orange), #F6B26B); border-radius:100px; transition:width 0.4s ease;}
+.tally-advance{margin-top:8px; width:auto; padding:8px 16px; font-size:13px;}
+
+.waiting-panel{text-align:center; padding:60px 0; color:#9AA0A8;}
+.waiting-choice{font-size:20px; font-weight:600; color:#fff; margin-bottom:24px;}
+.waiting-dot{display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--orange); margin:0 3px; animation:pulse 1.2s ease-in-out infinite;}
+.waiting-dot:nth-child(2){animation-delay:0.2s;}
+.waiting-dot:nth-child(3){animation-delay:0.4s;}
+@keyframes pulse{0%,80%,100%{opacity:0.25;} 40%{opacity:1;}}
+
+@media (max-width:600px){
+  .game-shell{padding:0 16px 40px;}
+  .session-code{font-size:32px;}
+}
